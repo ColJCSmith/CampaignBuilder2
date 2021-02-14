@@ -25,18 +25,22 @@ const Form = () => {
 
     function handleClick(event) {
         event.preventDefault();
-        const newCampaign = {
-            title: input.title,
-            description: input.description,
-            donation: input.donation,
-            caseStudy: input.caseStudy
-        }
+        // const newCampaign = {
+        //     title: input.title,
+        //     description: input.description,
+        //     donation: input.donation,
+        //     caseStudy: input.caseStudy
+        // }
 
-        axios.post('http://localhost:5000/create', newCampaign)
+        // console.log(newCampaign);
+        // console.log(input);
+
+        axios.post('http://localhost:3000/campaigns/create');
+        console.log("saved");
     }
 
     return (
-        
+
         <div class="container">
             <form>
                 <div className="form-group">

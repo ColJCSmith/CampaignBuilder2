@@ -13,45 +13,57 @@ import Form from './components/form';
 import Microsite from './components/microSite'
 import Navbar from './components/navbar'
 
-import memories from './images/memories.png'
 import useStyles from './styles'
 
 function App() {
-    const classes = useStyles();
-    return (
-<Router>
+  const classes = useStyles();
+  return (
+    <Router>
       <div>
-        <Navbar />
-        <Banner />
         <Switch>
-          <Route path="/" exact component={About} />
           <Route path="/" exact render={() =>
             <Fragment>
-              <About />
+              <Navbar />
+              <Banner />
               <Button />
+              <About />
+              <Footer />
             </Fragment>
           } />
           <Route path="/about" render={() =>
             <Fragment>
+              <Navbar />
+              <Banner />
+              <Button />
               <About />
-              <Button />
+              <Footer />
             </Fragment>
           } />
-          <Route path="/contact" component={Contact} />
-          <Route path="/" exact render={() =>
+          <Route path="/contact" render={() =>
             <Fragment>
-              <Contact />
+              <Navbar />
+              <Banner />
               <Button />
+              <Contact />
+              <Footer />
             </Fragment>
           } />
-          <Route path="/builder" component={Form} />
-          <Route path="/test" component={Microsite} />
+          <Route path="/builder" render={() =>
+            <Fragment>
+              <Navbar />
+              <Banner />
+              <Form />
+              <Footer />
+            </Fragment>
+          } />
+          <Route path="/microsite" render={() =>
+            <Microsite />
+          } />
         </Switch>
-        <Footer />
       </div>
     </Router>
-      );
-    }
+  );
+}
 
 export default App;
 

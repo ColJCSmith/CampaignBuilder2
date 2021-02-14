@@ -1,5 +1,36 @@
 import React, { useState, useEffect } from "react";
 
+import { makeStyles, Grid, Paper, Card, CardActions, CardContent, Typography, Button } from '@material-ui/core';
+
+
+import Image from '../assets/images/BushfireAfterHills.jpg';
+
+const styles = {
+    paperContainer: {
+        backgroundImage: `url(${Image})`,
+        backgroundSize: 'cover',
+        height: '1000px',
+        // filter: 'blur(5px)',
+        text: 'white'
+    },
+    root: {
+        position: "absolute",
+        margin: "20px",
+
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    }
+};
+
 function Microsite() {
     const [campaign, setCampaign] = useState([{
         title: '',
@@ -9,25 +40,60 @@ function Microsite() {
     }]);
 
     useEffect(() => {
-        fetch('/campaignSite').then(res => {
+        fetch('http://localhost:5000/campaigns/campaignSite').then(res => {
             if (res.ok) {
                 return res.json()
             }
         }).then(jsonRes => setCampaign(jsonRes))
     });
 
+
     return (
-        <div class="w3-content w3-container w3-padding-64" id="microSite">
-            <br />
-            {campaign.map(campaign =>
-                <div>
-                    <h1><span>Title: </span>{campaign.title}</h1>
-                    <h2><span>Description: </span>{campaign.description}</h2>
-                    <h2><span>Donation: </span>{campaign.donation}</h2>
-                    <h2><span>Case Study: </span>{campaign.caseStudy}</h2>
-                </div>
-            )}
+        <div>
+            <Paper style={styles.paperContainer}>
+                <Grid container height="20px"></Grid>
+                <Grid container>
+                    <Grid item xs={4}></Grid>
+                    <Grid item xs={3} color="white" variant="h2" component="h2">[Bushfires in Murrindindi] {campaign.title}<br />
+                    [Description goes here] {campaign.description}</Grid>
+                    <Grid item xs={4}><br />
+                        <Button size="large">Yes I will chip in {campaign.donation} to help communities like {campaign.caseStudy}'s</Button>
+
+                        <Card className="root" variant="outlined">
+                            <CardContent>
+                                <Typography className="title" color="textSecondary" gutterBottom>
+                                    Tough times in our regions
+              </Typography>
+                                <Typography variant="h5" component="h2">
+                                    {campaign.caseStudy}'s Story
+              </Typography>
+                                <Typography className="pos" color="textSecondary">
+                                    When a human or animal cries for help the instinct of a compassionate community is to do what they can. People in Marysville showed that spirit on Black Saturday, aware that an immense fire was about to descend on our town.
+
+<br />The fire started at 3 pm at Murrindindi old mill, fifty kilometres to the north-west and half an hour later smoke began to billow behind Mt. Gordon. The mountain is several kilometres away from where Marysville is nestled in a valley and it blocks the view out west. By 4:30 the firestorm had razed Narbethong to the ground, a mere ten kilometres westward. The only information was on the local radio, being that the settlement was "being impacted by direct ember attack". The winds were gusting and at 5:15 we lost power in Marysville, by which time the western half of the sky and the sun were blocked out by the massive smoke clouds.
+
+<br />Bev McGeary, a middle-aged masseur, was heading to a friend's house with her cats at 5:30 when a massive tree blew down on her car, on the corner of Lyell and Sedgwick Streets. The front half of the passenger compartment was crushed and she was pinned inside, bleeding from a head wound.              </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small">Read more about {campaign.caseStudy} </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <Grid item xs={1}></Grid>
+            </Paper>
         </div>
+        // <div class="w3-content w3-container w3-padding-64" id="microSite">
+        //     <br />
+        //     {campaign.map(campaign =>
+        //         <div>
+        //             <h1><span>Title: </span>{campaign.title}</h1>
+        //             <h2><span>Description: </span>{campaign.description}</h2>
+        //             <h2><span>Donation: </span>{campaign.donation}</h2>
+        //             <h2><span>Case Study: </span>{campaign.caseStudy}</h2>
+        //         </div>
+        //     )}
+        // </div>
     )
 }
 
