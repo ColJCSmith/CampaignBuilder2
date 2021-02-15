@@ -44,18 +44,26 @@ function Microsite() {
             if (res.ok) {
                 return res.json()
             }
-        }).then(jsonRes => setCampaign(jsonRes))
-    });
+        }).then(jsonRes => {
+            console.log(jsonRes);
+            setCampaign(jsonRes)
+        })
+
+    }, []);
+
 
 
     return (
         <div>
+            {campaign.map(campaign => (
+
+
             <Paper style={styles.paperContainer}>
                 <Grid container height="20px"></Grid>
                 <Grid container>
                     <Grid item xs={4}></Grid>
                     <Grid item xs={3} color="white" variant="h2" component="h2">[Bushfires in Murrindindi] {campaign.title}<br />
-                    [Description goes here] {campaign.description}</Grid>
+                    {campaign.description}</Grid>
                     <Grid item xs={4}><br />
                         <Button size="large">Yes I will chip in {campaign.donation} to help communities like {campaign.caseStudy}'s</Button>
 
@@ -82,6 +90,8 @@ function Microsite() {
                 </Grid>
                 <Grid item xs={1}></Grid>
             </Paper>
+                        )
+                        )}
         </div>
         // <div class="w3-content w3-container w3-padding-64" id="microSite">
         //     <br />
