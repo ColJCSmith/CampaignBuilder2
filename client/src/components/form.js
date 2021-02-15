@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Grid, Typography, Button, TextField } from '@material-ui/core';
+
 
 // import useStyles from './formstyles'
 import axios from 'axios'
@@ -41,20 +43,24 @@ const Form = () => {
 
     return (
 
+        <Grid container display="flex">
+                        <Grid item xs={12} height="300px"></Grid><br /><br />
+                        <Grid item xs={3}></Grid>
+                        <Grid item xs={4}>
         <div class="container">
             <form>
                 <div className="form-group">
-                    <label for="title">Campaign Name</label>
+                    <label for="title">Campaign Name   </label>
                     <input onChange={handleChange} type="text" name="title" value={input.title} placeholder="Give your campaign a name" />
-                </div>
+                </div><br />
                 <div className="form-group">
-                    <label for="description">Campaign Description</label>
+                    <label for="description">Campaign Description   </label>
                     <input onChange={handleChange} type="text" name="description" value={input.description} placeholder="Describe the issue" />
-                </div>
+                </div><br />
                 <div className="form-group">
-                    <label for="donation">Recommended donation</label><br></br>
+                    <label for="donation">Recommended donation   </label>
                     <input onChange={handleChange} type="number" name="donation" value={input.donation} />
-                </div>
+                </div><br />
                 {/* <div className="form-group">
                     <label for="startDate">Start camapign</label>
                     <input type="date" name="startDate" id="startDate" />
@@ -66,12 +72,15 @@ const Form = () => {
                 <div className="form-group">
                     <label for="caseStudy">Select a case study</label>
                     <input onChange={handleChange} type="text" name="caseStudy" value={input.caseStudy} />
-                </div>
+                </div><br />
 
-                <button onClick={handleClick} class="w3-button w3-padding-large w3-light-grey center" id="submit-btn" position="relative">BUILD MY CAMPAIGN</button>
+                <button onClick={handleClick} class="w3-button w3-padding-large w3-light-grey center" id="submit-btn" position="absolute">BUILD MY CAMPAIGN</button>
 
             </form>
         </div>
+        </Grid>
+        <Grid item xs={12} height="300px"></Grid><br />
+        </Grid>
     )
 }
 

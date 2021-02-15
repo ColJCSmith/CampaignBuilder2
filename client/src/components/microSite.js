@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-import { makeStyles, Grid, Paper, Card, CardActions, CardContent, Typography, Button } from '@material-ui/core';
+import { flexbox, typography } from '@material-ui/system';
+import { makeStyles, Grid, Paper, Card, CardActions, CardContent, Typography, Button, TextField } from '@material-ui/core';
 
 
 import Image from '../assets/images/BushfireAfterHills.jpg';
@@ -17,6 +17,11 @@ const styles = {
         position: "absolute",
         margin: "20px",
 
+    },
+    hero: {
+        fontWeight: "fontWeightBold",
+        fontSize: 30,
+        textAlign: "center"
     },
     bullet: {
         display: 'inline-block',
@@ -58,40 +63,43 @@ function Microsite() {
             {campaign.map(campaign => (
 
 
-            <Paper style={styles.paperContainer}>
-                <Grid container height="20px"></Grid>
-                <Grid container>
-                    <Grid item xs={4}></Grid>
-                    <Grid item xs={3} color="white" variant="h2" component="h2">[Bushfires in Murrindindi] {campaign.title}<br />
-                    {campaign.description}</Grid>
-                    <Grid item xs={4}><br />
-                        <Button size="large">Yes I will chip in {campaign.donation} to help communities like {campaign.caseStudy}'s</Button>
+                <Paper style={styles.paperContainer}>
+                    <Grid container display="flex">
+                        <Grid item xs={12} height="300px"></Grid><br />
+                        <Grid item xs={3}></Grid>
+                        <Grid item xs={4}>
+                            <Typography variant="h3" style={{ color: "black" }}> {campaign.title}</Typography>
+                            <Typography variant="h5" style={{ color: "black" }}> {campaign.description}</Typography>
+                        </Grid>
+                        <Grid item xs={4}><br />
 
-                        <Card className="root" variant="outlined">
-                            <CardContent>
-                                <Typography className="title" color="textSecondary" gutterBottom>
-                                    Tough times in our regions
+                            <Card className="root" variant="outlined">
+                                <CardContent>
+                                    <Typography className="title" color="textSecondary" gutterBottom>
+                                        Tough times in our regions
               </Typography>
-                                <Typography variant="h5" component="h2">
-                                    {campaign.caseStudy}'s Story
+                                    <Typography variant="h5" component="h2">
+                                        {campaign.caseStudy}'s Story
               </Typography>
-                                <Typography className="pos" color="textSecondary">
-                                    When a human or animal cries for help the instinct of a compassionate community is to do what they can. People in Marysville showed that spirit on Black Saturday, aware that an immense fire was about to descend on our town.
+                                    <Typography className="pos" color="textSecondary">
+                                        When a human or animal cries for help the instinct of a compassionate community is to do what they can. People in Marysville showed that spirit on Black Saturday, aware that an immense fire was about to descend on our town.
 
 <br />The fire started at 3 pm at Murrindindi old mill, fifty kilometres to the north-west and half an hour later smoke began to billow behind Mt. Gordon. The mountain is several kilometres away from where Marysville is nestled in a valley and it blocks the view out west. By 4:30 the firestorm had razed Narbethong to the ground, a mere ten kilometres westward. The only information was on the local radio, being that the settlement was "being impacted by direct ember attack". The winds were gusting and at 5:15 we lost power in Marysville, by which time the western half of the sky and the sun were blocked out by the massive smoke clouds.
 
 <br />Bev McGeary, a middle-aged masseur, was heading to a friend's house with her cats at 5:30 when a massive tree blew down on her car, on the corner of Lyell and Sedgwick Streets. The front half of the passenger compartment was crushed and she was pinned inside, bleeding from a head wound.              </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small">Read more about {campaign.caseStudy} </Button>
-                            </CardActions>
-                        </Card>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Read more about {campaign.caseStudy} </Button>
+                                </CardActions>
+                            </Card>
+                            <Button size="large" variant="contained" color="secondary" style={{ fontSize: 16 }}>Yes I will chip in ${campaign.donation} to help communities like {campaign.caseStudy}'s</Button>
+
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid item xs={1}></Grid>
-            </Paper>
-                        )
-                        )}
+                    <Grid item xs={1}></Grid>
+                </Paper>
+            )
+            )}
         </div>
         // <div class="w3-content w3-container w3-padding-64" id="microSite">
         //     <br />
